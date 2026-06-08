@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Farmacia Velilla — Atención farmacéutica de barrio, Córdoba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: { neutral: {
+    200:'#dbe7e1', 300:'#b9cbc2', 400:'#8aa298', 500:'#647d72', 700:'#33453d', 900:'#1c2722'
+  } } } } }
+</script>
+<style>
+:root{
+  --bg:#f3f8f6; --card:#ffffff; --line:#dde9e3;
+  --ink:#1f2e29; --ink-soft:#5d7167;
+  --green:#1f9d6f; --green2:#157e58;
+  --blue:#3b82f6; --blue2:#2563eb;
+  --coral:#ef6f6f;
+}
+*{font-family:'Figtree',sans-serif}
+h1,h2,h3{font-family:'Literata',serif;font-weight:600;letter-spacing:-.012em}
+body{background:var(--bg);color:var(--ink)}
+.glass{background:rgba(255,255,255,.7);backdrop-filter:blur(14px) saturate(150%);-webkit-backdrop-filter:blur(14px) saturate(150%);border:1px solid rgba(255,255,255,.85);box-shadow:0 6px 24px -16px rgba(31,46,41,.16)}
+.green{color:var(--green2)}
+.green-bg{background:var(--green)}
+.blue{color:var(--blue2)}
+.btn-primary{background:var(--green);color:#fff;font-weight:600;transition:all .2s;border-radius:12px;padding:14px 28px;border:none;cursor:pointer}
+.btn-primary:hover{background:var(--green2);transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(31,157,111,.4)}
+.btn-ghost{border:1px solid var(--line);color:var(--ink);border-radius:12px;padding:13px 27px;font-weight:600;transition:all .2s;background:#fff}
+.btn-ghost:hover{border-color:var(--green);color:var(--green2)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;transition:all .3s;box-shadow:0 4px 20px -16px rgba(31,46,41,.12)}
+.card:hover{border-color:var(--green);transform:translateY(-3px);box-shadow:0 16px 36px -18px rgba(31,157,111,.2)}
+.opt-btn{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;transition:all .2s;cursor:pointer;font-weight:500;color:var(--ink-soft);text-align:left}
+.opt-btn:hover{border-color:var(--green);color:var(--ink)}
+.opt-btn.active{background:var(--green);color:#fff;border-color:var(--green)}
+.fade-in{animation:fadein .5s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.status-dot{display:inline-block;width:10px;height:10px;border-radius:9999px}
+.status-dot.open{background:#22c55e;animation:pulse 2s infinite}
+.status-dot.closed{background:#94a3b8}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.5)}70%{box-shadow:0 0 0 9px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#c6d8d0;border-radius:8px}
+
+/* Cruz farmacéutica sutil, decorativa, en el fondo del hero */
+.cross-pattern{position:absolute;inset:0;z-index:-1;opacity:.05;
+  background-image:
+    linear-gradient(var(--green) 2px, transparent 2px),
+    linear-gradient(90deg, var(--green) 2px, transparent 2px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(circle at 65% 35%, black, transparent 60%);
+  mask-image:radial-gradient(circle at 65% 35%, black, transparent 60%);}
+</style>
+</head>
+<body class="antialiased">
+
+<!-- NAV -->
+<nav class="fixed top-0 inset-x-0 z-50 glass">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl green-bg flex items-center justify-center text-white font-bold text-lg">+</div>
+      <span class="font-semibold text-xl tracking-tight" style="font-family:'Literata',serif">Farmacia Velilla</span>
+    </div>
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-500">
+      <a href="#guardia" class="hover:text-[var(--ink)] transition">¿Abierto ahora?</a>
+      <a href="#servicios" class="hover:text-[var(--ink)] transition">Servicios</a>
+      <a href="#necesitas" class="hover:text-[var(--ink)] transition">¿Qué necesitas hoy?</a>
+      <a href="#opiniones" class="hover:text-[var(--ink)] transition">Opiniones</a>
+    </div>
+    <a href="#guardia" class="btn-primary text-sm">Ver horario de hoy</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="pt-40 pb-16 px-6 relative overflow-hidden">
+  <div class="cross-pattern"></div>
+  <div class="max-w-5xl mx-auto text-center relative">
+    <span class="inline-block glass rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide text-[var(--ink-soft)] mb-6">📍 Calle Conde de Torres Cabrera, 12 · barrio de San Lorenzo · Córdoba</span>
+    <h1 class="text-4xl md:text-6xl leading-tight tracking-tight mb-6">
+      Atención farmacéutica de barrio, <span class="green italic">cercana y de confianza</span>
+    </h1>
+    <p class="text-lg text-[var(--ink-soft)] max-w-2xl mx-auto mb-10">
+      Llevamos más de veinte años en San Lorenzo. Conocemos a la mayoría de quienes vienen por su nombre, y eso significa que sabemos qué tratamientos llevan, cuándo les toca renovar la receta, y cuándo conviene que hablen primero con su médico.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="#guardia" class="btn-primary">¿Estamos abiertos ahora?</a>
+      <a href="#necesitas" class="btn-ghost">¿Qué necesitas hoy?</a>
+    </div>
+  </div>
+</header>
+
+<!-- ¿ABIERTO AHORA? / GUARDIA -->
+<section id="guardia" class="py-16 px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="card p-8 md:p-10">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <p class="text-xs uppercase tracking-widest font-semibold text-[var(--ink-soft)] mb-2">Estado en este momento</p>
+          <div class="flex items-center gap-3 mb-4">
+            <span id="status-dot" class="status-dot"></span>
+            <h3 id="status-text" class="text-2xl font-semibold" style="font-family:'Literata',serif">Comprobando horario…</h3>
+          </div>
+          <p id="status-detail" class="text-[var(--ink-soft)]">Nuestro horario habitual es de lunes a viernes de 9:00 a 21:00, y sábados de 10:00 a 14:00.</p>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <p class="text-xs uppercase tracking-widest font-semibold text-[var(--ink-soft)] mb-2">🌙 Farmacia de guardia esta noche</p>
+          <p id="guardia-name" class="text-xl font-semibold mb-1" style="font-family:'Literata',serif">—</p>
+          <p id="guardia-addr" class="text-[var(--ink-soft)] text-sm mb-3">—</p>
+          <p class="text-[var(--ink-soft)] text-xs">Si estamos cerrados y es una urgencia, esta es la farmacia que cubre el turno de noche en nuestra zona — el turno rota cada día entre las farmacias del distrito.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="py-16 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="green font-semibold uppercase tracking-widest text-sm">En qué podemos ayudarte</span>
+      <h2 class="text-3xl md:text-5xl mt-2">Más que un mostrador de medicamentos</h2>
+      <p class="text-[var(--ink-soft)] mt-3 max-w-xl mx-auto">Estos son los servicios que ofrecemos en la propia farmacia, sin necesidad de pedir cita en otro sitio.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="card p-6">
+        <div class="text-3xl mb-3">💉</div>
+        <h3 class="font-semibold text-lg mb-1">Vacunación de gripe y COVID</h3>
+        <p class="text-[var(--ink-soft)] text-sm">Sin cita previa en temporada, con registro directo en tu cartilla de vacunación.</p>
+      </div>
+      <div class="card p-6">
+        <div class="text-3xl mb-3">🩺</div>
+        <h3 class="font-semibold text-lg mb-1">Control de tensión y glucosa</h3>
+        <p class="text-[var(--ink-soft)] text-sm">Mediciones rápidas y gratuitas, con seguimiento si lo necesitas para llevar un registro.</p>
+      </div>
+      <div class="card p-6">
+        <div class="text-3xl mb-3">📋</div>
+        <h3 class="font-semibold text-lg mb-1">Recogida de recetas crónicas</h3>
+        <p class="text-[var(--ink-soft)] text-sm">Te avisamos nosotros cuando toca renovar — no hace falta que estés pendiente del calendario.</p>
+      </div>
+      <div class="card p-6">
+        <div class="text-3xl mb-3">🦶</div>
+        <h3 class="font-semibold text-lg mb-1">Ortopedia y material sanitario</h3>
+        <p class="text-[var(--ink-soft)] text-sm">Plantillas, fajas, sillas de ruedas y material de cura, con asesoramiento incluido.</p>
+      </div>
+      <div class="card p-6">
+        <div class="text-3xl mb-3">🌿</div>
+        <h3 class="font-semibold text-lg mb-1">Parafarmacia y dermocosmética</h3>
+        <p class="text-[var(--ink-soft)] text-sm">Cuidado facial, capilar y de bebé, con marcas que recomendamos por experiencia, no por catálogo.</p>
+      </div>
+      <div class="card p-6">
+        <div class="text-3xl mb-3">💬</div>
+        <h3 class="font-semibold text-lg mb-1">Consejo farmacéutico</h3>
+        <p class="text-[var(--ink-soft)] text-sm">Dudas sobre interacciones, dosis o efectos secundarios — te las resolvemos en el mismo mostrador.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ¿QUÉ NECESITAS HOY? -->
+<section id="necesitas" class="py-16 px-6">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-10">
+      <span class="blue font-semibold uppercase tracking-widest text-sm">Una orientación, no un diagnóstico</span>
+      <h2 class="text-3xl md:text-5xl mt-2">¿Qué necesitas hoy?</h2>
+      <p class="text-[var(--ink-soft)] mt-3">Elige lo que más se acerque a tu situación. Te damos una primera orientación — y te decimos cuándo es mejor que lo hables directamente con el farmacéutico o con tu médico.</p>
+    </div>
+
+    <div class="card p-6 md:p-8">
+      <div class="grid sm:grid-cols-2 gap-3 mb-2" id="necesita-opts">
+        <button class="opt-btn" onclick="necesitaPick('dolor-cabeza',this)">🤕 Dolor de cabeza o malestar leve</button>
+        <button class="opt-btn" onclick="necesitaPick('resfriado',this)">🤧 Síntomas de resfriado o gripe</button>
+        <button class="opt-btn" onclick="necesitaPick('alergia',this)">🌼 Alergia o picor en la piel</button>
+        <button class="opt-btn" onclick="necesitaPick('receta',this)">📋 Renovar un tratamiento habitual</button>
+        <button class="opt-btn" onclick="necesitaPick('bebe',this)">👶 Algo para un bebé o niño pequeño</button>
+        <button class="opt-btn" onclick="necesitaPick('duda',this)">❓ Tengo una duda y no sé a quién preguntar</button>
+      </div>
+
+      <div id="necesita-result" class="hidden mt-6 pt-6 border-t border-[var(--line)] fade-in">
+        <div class="flex items-start gap-4">
+          <span id="nec-emoji" class="text-3xl"></span>
+          <div>
+            <h3 id="nec-title" class="font-semibold text-lg mb-1"></h3>
+            <p id="nec-text" class="text-[var(--ink-soft)] mb-2"></p>
+            <p id="nec-aviso" class="text-sm font-medium text-[var(--coral)]"></p>
+          </div>
+        </div>
+        <button onclick="necesitaReset()" class="mt-5 text-sm font-medium text-[var(--ink-soft)] hover:text-[var(--ink)] transition">↺ Elegir otra opción</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPINIONES -->
+<section id="opiniones" class="py-16 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="green font-semibold uppercase tracking-widest text-sm">Lo que dice el barrio</span>
+      <h2 class="text-3xl md:text-5xl mt-2">Veinte años conociéndonos por el nombre</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
+      <div class="card p-6 text-center"><p class="text-3xl green mb-1" style="font-family:'Literata',serif">4.9 ★</p><p class="text-sm text-[var(--ink-soft)]">valoración media en Google</p></div>
+      <div class="card p-6 text-center"><p class="text-3xl green mb-1" style="font-family:'Literata',serif">22</p><p class="text-sm text-[var(--ink-soft)]">años atendiendo en San Lorenzo</p></div>
+      <div class="card p-6 text-center"><p class="text-3xl green mb-1" style="font-family:'Literata',serif">+3.000</p><p class="text-sm text-[var(--ink-soft)]">vacunas administradas el año pasado</p></div>
+      <div class="card p-6 text-center"><p class="text-3xl green mb-1" style="font-family:'Literata',serif">6</p><p class="text-sm text-[var(--ink-soft)]">farmacéuticos en plantilla</p></div>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="card p-6">
+        <p class="text-[var(--ink)] mb-4">"Mi madre tiene 84 años y desde que la avisan cuando toca renovar su tratamiento, ya no se le olvida ni una sola caja. Es un detalle pequeño que cambia mucho el día a día."</p>
+        <p class="font-semibold" style="font-family:'Literata',serif">— Antonio J. <span class="text-[var(--ink-soft)] font-normal not-italic text-sm">· vecino de San Lorenzo</span></p>
+      </div>
+      <div class="card p-6">
+        <p class="text-[var(--ink)] mb-4">"Llevé a mi hijo con fiebre un domingo y me explicaron justo qué darle hasta el lunes y cuándo debía preocuparme de verdad. Ese consejo, dado con calma, vale más que cualquier búsqueda en internet."</p>
+        <p class="font-semibold" style="font-family:'Literata',serif">— Sara M. <span class="text-[var(--ink-soft)] font-normal not-italic text-sm">· madre de dos niños</span></p>
+      </div>
+      <div class="card p-6">
+        <p class="text-[var(--ink)] mb-4">"Me hacen el control de tensión cada quince días sin tener que pedir cita en el centro de salud. Y si ven algo raro, son los primeros en decirme que vaya al médico — no intentan venderme nada de más."</p>
+        <p class="font-semibold" style="font-family:'Literata',serif">— Manuel R. <span class="text-[var(--ink-soft)] font-normal not-italic text-sm">· paciente crónico</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="py-16 px-6">
+  <div class="max-w-4xl mx-auto card p-12 text-center relative overflow-hidden">
+    <div class="absolute inset-0 -z-10" style="background:radial-gradient(circle at 22% 28%, rgba(31,157,111,.08), transparent 55%), radial-gradient(circle at 80% 76%, rgba(59,130,246,.08), transparent 55%);"></div>
+    <h2 class="text-3xl md:text-5xl mb-4">¿Tienes alguna duda que prefieres consultar antes?</h2>
+    <p class="text-[var(--ink-soft)] max-w-xl mx-auto mb-8">Llámanos o pásate por el mostrador — no hace falta cita previa para hablar con el farmacéutico, y siempre vamos a decirte la verdad, aunque sea "esto no lo resolvemos aquí, mejor que lo vea tu médico".</p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="#guardia" class="btn-primary">Ver si estamos abiertos</a>
+      <a href="#necesitas" class="btn-ghost">¿Qué necesitas hoy?</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-10 px-6 border-t border-neutral-700">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[var(--ink-soft)]">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg green-bg flex items-center justify-center text-white font-bold text-sm">+</div>
+      <span class="font-semibold text-[var(--ink)]" style="font-family:'Literata',serif">Farmacia Velilla</span> — San Lorenzo, Córdoba
+    </div>
+    <p>L-V de 9:00 a 21:00 · Sábados de 10:00 a 14:00</p>
+    <p>© 2026 Farmacia Velilla. Atención cercana, sin prisas ni sustos.</p>
+  </div>
+</footer>
+
+<script>
+// ---------- ¿ABIERTO AHORA? — calculado con la hora real del visitante ----------
+(() => {
+  const dot = document.getElementById('status-dot');
+  const text = document.getElementById('status-text');
+  const detail = document.getElementById('status-detail');
+
+  const now = new Date();
+  const day = now.getDay(); // 0 domingo .. 6 sábado
+  const hour = now.getHours() + now.getMinutes() / 60;
+
+  let open = false, msg = '';
+  if (day >= 1 && day <= 5){
+    open = hour >= 9 && hour < 21;
+    msg = open ? 'Abierto ahora — cerramos hoy a las 21:00.' : (hour < 9 ? 'Cerrado todavía — abrimos hoy a las 9:00.' : 'Cerrado por hoy — abrimos mañana a las 9:00.');
+  } else if (day === 6){
+    open = hour >= 10 && hour < 14;
+    msg = open ? 'Abierto ahora — cerramos hoy a las 14:00.' : (hour < 10 ? 'Cerrado todavía — abrimos hoy a las 10:00.' : 'Cerrado por hoy — el lunes abrimos a las 9:00.');
+  } else {
+    open = false;
+    msg = 'Hoy domingo permanecemos cerrados — consulta la farmacia de guardia más abajo si es una urgencia.';
+  }
+
+  dot.classList.add(open ? 'open' : 'closed');
+  text.textContent = open ? 'Abierto ahora mismo' : 'Cerrado en este momento';
+  detail.textContent = msg;
+})();
+
+// ---------- FARMACIA DE GUARDIA — turno simulado, rota según el día ----------
+(() => {
+  const roster = [
+    { name: 'Farmacia Jiménez Cruz', addr: 'Avenida de Carlos III, 4' },
+    { name: 'Farmacia Ruiz-Golluri', addr: 'Plaza de las Tendillas, 9' },
+    { name: 'Farmacia Aguayo', addr: 'Calle Doce de Octubre, 21' },
+    { name: 'Farmacia Velilla (nosotros)', addr: 'Calle Conde de Torres Cabrera, 12' },
+    { name: 'Farmacia Sotomayor', addr: 'Ronda de los Tejares, 33' },
+    { name: 'Farmacia López-Obrero', addr: 'Avenida de América, 14' },
+    { name: 'Farmacia San Rafael', addr: 'Calle San Fernando, 58' },
+  ];
+  const today = new Date().getDay();
+  const turno = roster[today % roster.length];
+  document.getElementById('guardia-name').textContent = turno.name;
+  document.getElementById('guardia-addr').textContent = turno.addr;
+})();
+
+// ---------- ¿QUÉ NECESITAS HOY? ----------
+const necesidades = {
+  'dolor-cabeza': { emoji:'🤕', title:'Dolor de cabeza o malestar leve', text:'Para un dolor puntual, lo habitual es un analgésico común a la dosis indicada en el prospecto. Si llevas más de dos o tres días con dolor, o es mucho más fuerte de lo normal en ti, mejor que lo veamos en el mostrador antes de tomar nada.', aviso:'⚠️ Si el dolor aparece de repente y es muy intenso, o viene con fiebre alta o visión borrosa, acude a urgencias.' },
+  'resfriado':    { emoji:'🤧', title:'Síntomas de resfriado o gripe', text:'Descanso, hidratación y, si hace falta, algo para bajar la fiebre o aliviar la congestión. Te podemos orientar sobre qué combinación tiene sentido según los síntomas exactos que tengas.', aviso:'⚠️ Si la fiebre supera los 39° o se mantiene más de tres días, conviene que lo valore tu médico de cabecera.' },
+  'alergia':      { emoji:'🌼', title:'Alergia o picor en la piel', text:'Hay antihistamínicos y cremas que alivian la mayoría de reacciones leves. Te preguntaremos desde cuándo lo notas y si has cambiado algo (jabón, detergente, comida) para orientarte mejor.', aviso:'⚠️ Si notas hinchazón en la cara, labios o garganta, o te cuesta respirar, es una urgencia — llama al 112.' },
+  'receta':       { emoji:'📋', title:'Renovar un tratamiento habitual', text:'Si ya eres paciente nuestro, lo normal es que tengamos tu historial y podamos prepararte la medicación antes de que llegues. Si es la primera vez, trae la receta o el código de tu app de salud y lo resolvemos en el momento.', aviso:'' },
+  'bebe':         { emoji:'👶', title:'Algo para un bebé o niño pequeño', text:'Con peques, las dosis y los productos cambian mucho según la edad y el peso — te las calculamos en el momento y te explicamos cómo administrarlo sin sustos.', aviso:'⚠️ En menores de tres meses con fiebre, lo correcto siempre es consultar antes con el pediatra, no automedicar.' },
+  'duda':         { emoji:'❓', title:'Tienes una duda y no sabes a quién preguntar', text:'Para eso estamos. Interacciones entre medicamentos, efectos secundarios raros, si puedes tomar algo estando embarazada o en lactancia — pregúntanos directamente en el mostrador, sin cita y sin prisa.', aviso:'' },
+};
+
+function necesitaPick(key, btn){
+  document.querySelectorAll('#necesita-opts .opt-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const n = necesidades[key];
+  document.getElementById('nec-emoji').textContent = n.emoji;
+  document.getElementById('nec-title').textContent = n.title;
+  document.getElementById('nec-text').textContent = n.text;
+  document.getElementById('nec-aviso').textContent = n.aviso;
+  const result = document.getElementById('necesita-result');
+  result.classList.remove('hidden');
+  result.classList.remove('fade-in'); void result.offsetWidth; result.classList.add('fade-in');
+  result.scrollIntoView({ behavior:'smooth', block:'center' });
+}
+function necesitaReset(){
+  document.getElementById('necesita-result').classList.add('hidden');
+  document.querySelectorAll('#necesita-opts .opt-btn').forEach(b => b.classList.remove('active'));
+}
+</script>
+
+</body>
+</html>
